@@ -29,6 +29,7 @@ public class LoginScreen extends AppCompatActivity {
         loginScreen_username_editText = findViewById(R.id.loginScreen_username_editText);
         loginScreen_password_editText = findViewById(R.id.loginScreen_password_editText);
         loginScreen_login_button = findViewById(R.id.loginScreen_login_button);
+        //Test
 
     }
 }
