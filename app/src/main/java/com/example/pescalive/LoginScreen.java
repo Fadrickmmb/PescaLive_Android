@@ -1,6 +1,8 @@
 package com.example.pescalive;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class LoginScreen extends AppCompatActivity {
+
+    EditText loginScreen_username_editText, loginScreen_password_editText;
+    Button loginScreen_login_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +25,10 @@ public class LoginScreen extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        loginScreen_username_editText = findViewById(R.id.loginScreen_username_editText);
+        loginScreen_password_editText = findViewById(R.id.loginScreen_password_editText);
+        loginScreen_login_button = findViewById(R.id.loginScreen_login_button);
+
     }
 }
