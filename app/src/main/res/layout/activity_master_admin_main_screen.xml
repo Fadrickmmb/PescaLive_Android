@@ -16,7 +16,42 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.106"></Button>
+        app:layout_constraintVertical_bias="0.106" />
+
+    <Button
+        android:id="@+id/masterAdmin_mainScreen_editTournament_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Tournament"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/masterAdmin_mainScreen_createTournament_button"
+        app:layout_constraintVertical_bias="0.152" />
+
+    <Button
+        android:id="@+id/masterAdmin_mainScreen_createUser_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create User"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/masterAdmin_mainScreen_editTournament_button"
+        app:layout_constraintVertical_bias="0.167" />
+
+    <Button
+        android:id="@+id/masterAdmin_mainScreen_editUser_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit User"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/masterAdmin_mainScreen_createUser_button"
+        app:layout_constraintVertical_bias="0.187" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
