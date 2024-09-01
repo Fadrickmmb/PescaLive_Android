@@ -1,6 +1,11 @@
 package com.example.pescalive;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.NumberPicker;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +14,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MasterAdmin_CreateTournamentScreen extends AppCompatActivity {
+
+    EditText masterAdmin_createTournament_tournamentName, masterAdmin_createTournament_clubName;
+    NumberPicker masterAdmin_createTournament_roundsPicker;
+    Button masterAdmin_createTournament_addTournamentToDB_button, masterAdmin_createTournament_cancel_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +29,23 @@ public class MasterAdmin_CreateTournamentScreen extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        masterAdmin_createTournament_cancel_button = findViewById(R.id.masterAdmin_createTournament_cancel_button);
+        masterAdmin_createTournament_addTournamentToDB_button = findViewById(R.id.masterAdmin_createTournament_addTournamentToDB_button);
+        masterAdmin_createTournament_tournamentName = findViewById(R.id.masterAdmin_createTournament_tournamentName);
+        masterAdmin_createTournament_clubName = findViewById(R.id.masterAdmin_createTournament_clubName);
+        masterAdmin_createTournament_roundsPicker = findViewById(R.id.masterAdmin_createTournament_roundsPicker);
+
+        masterAdmin_createTournament_cancel_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MasterAdmin_MainScreen.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
+
     }
 }
