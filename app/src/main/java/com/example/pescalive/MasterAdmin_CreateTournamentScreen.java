@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,7 +43,24 @@ public class MasterAdmin_CreateTournamentScreen extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MasterAdmin_MainScreen.class);
                 startActivity(intent);
                 finish();
+            }
+        });
 
+        masterAdmin_createTournament_roundsPicker.setMinValue(1);
+        masterAdmin_createTournament_roundsPicker.setMaxValue(10);
+
+        String tournamentName = masterAdmin_createTournament_tournamentName.getText().toString().trim();
+        String clubName = masterAdmin_createTournament_clubName.getText().toString().trim();
+        Integer numberOfRounds = masterAdmin_createTournament_roundsPicker.getValue();
+
+        masterAdmin_createTournament_addTournamentToDB_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!tournamentName.isEmpty() && !clubName.isEmpty()){
+
+                }else{
+                    Toast.makeText(MasterAdmin_CreateTournamentScreen.this, "Please fill all Inputs", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
