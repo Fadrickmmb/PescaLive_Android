@@ -14,11 +14,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MasterAdmin_CreateTournamentScreen extends AppCompatActivity {
 
     EditText masterAdmin_createTournament_tournamentName, masterAdmin_createTournament_clubName;
     NumberPicker masterAdmin_createTournament_roundsPicker;
     Button masterAdmin_createTournament_addTournamentToDB_button, masterAdmin_createTournament_cancel_button;
+
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,21 +57,43 @@ public class MasterAdmin_CreateTournamentScreen extends AppCompatActivity {
         masterAdmin_createTournament_roundsPicker.setMinValue(1);
         masterAdmin_createTournament_roundsPicker.setMaxValue(10);
 
-        String tournamentName = masterAdmin_createTournament_tournamentName.getText().toString().trim();
-        String clubName = masterAdmin_createTournament_clubName.getText().toString().trim();
-        Integer numberOfRounds = masterAdmin_createTournament_roundsPicker.getValue();
+        databaseReference = FirebaseDatabase.getInstance().getReference("tournaments");
+
+
 
         masterAdmin_createTournament_addTournamentToDB_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!tournamentName.isEmpty() && !clubName.isEmpty()){
 
+                String tournamentName = masterAdmin_createTournament_tournamentName.getText().toString().trim();
+                String clubName = masterAdmin_createTournament_clubName.getText().toString().trim();
+                Integer numberOfRounds = masterAdmin_createTournament_roundsPicker.getValue();
+
+                if (!tournamentName.isEmpty() && !clubName.isEmpty()){
+                    addTournamentToDatabase(tournamentName, clubName, numberOfRounds);
                 }else{
                     Toast.makeText(MasterAdmin_CreateTournamentScreen.this, "Please fill all Inputs", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
 
+    private void addTournamentToDatabase(String tournamentName, String clubName, int numberOfRounds){
 
+        List<Round> rounds = new ArrayList<>();
+        for (int i = 1; i <= numberOfRounds; i++) {
+            String roundName = "Etapa " + i;
+            Round round = new Round(roundName);
+            rounds.add(round);
+        }
+
+        Tournament tournament = new Tournament(tournamentName, clubName, rounds);
+
+        databaseReference.child(tournamentName).setValue(tournament).addOnSuccessListener(
+                aVoid -> {
+                    Toast.makeText(this, "Tournament Added Successfully", Toast.LENGTH_SHORT).show();
+                }).addOnFailureListener(e -> {
+            Toast.makeText(this, "Failed to Add Tournament", Toast.LENGTH_SHORT).show();
+        });
     }
 }

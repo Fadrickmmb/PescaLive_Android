@@ -9,6 +9,13 @@ public class Tournament {
     private List<Round> rounds;
     private List<Team> teams;
 
+
+    public Tournament(String name, String clubName, List<Round> rounds) {
+        this.name = name;
+        this.clubName = clubName;
+        this.rounds = rounds;
+    }
+
     public String getTournamentId() {
         return tournamentId;
     }

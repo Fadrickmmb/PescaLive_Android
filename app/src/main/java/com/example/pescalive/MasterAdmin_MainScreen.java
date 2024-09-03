@@ -10,11 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MasterAdmin_MainScreen extends AppCompatActivity {
 
     Button masterAdmin_mainScreen_createTournament_button, masterAdmin_mainScreen_editTournament_button;
     Button masterAdmin_mainScreen_createUser_button, masterAdmin_mainScreen_editUser_button;
+    Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class MasterAdmin_MainScreen extends AppCompatActivity {
         masterAdmin_mainScreen_editTournament_button = findViewById(R.id.masterAdmin_mainScreen_editTournament_button);
         masterAdmin_mainScreen_createUser_button = findViewById(R.id.masterAdmin_mainScreen_createUser_button);
         masterAdmin_mainScreen_editUser_button = findViewById(R.id.masterAdmin_mainScreen_editUser_button);
+        logoutButton = findViewById(R.id.masterAdmin_mainScreen_logout_button);
 
         masterAdmin_mainScreen_createTournament_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +66,16 @@ public class MasterAdmin_MainScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MasterAdmin_EditUserScreen.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), TournamentsListScreen.class);
                 startActivity(intent);
                 finish();
             }

@@ -5,6 +5,10 @@ public class Round {
     private String name;
     private String date;
 
+    public Round(String name) {
+        this.name = name;
+    }
+
     public String getRoundId() {
         return roundId;
     }
