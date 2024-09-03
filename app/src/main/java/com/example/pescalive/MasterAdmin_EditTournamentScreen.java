@@ -51,5 +51,10 @@ public class MasterAdmin_EditTournamentScreen extends AppCompatActivity {
             }
         });
 
+        addRoundPicker.setMinValue(1);
+        addRoundPicker.setMaxValue(5);
+
+
+
     }
 }
