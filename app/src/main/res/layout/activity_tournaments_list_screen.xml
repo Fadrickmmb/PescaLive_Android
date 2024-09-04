@@ -7,18 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".TournamentsListScreen">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tournaments_recycler_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tournaments List"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.394">
-
-    </TextView>
+        app:layout_constraintVertical_bias="0.31"
+        tools:layout_editor_absoluteX="16dp" />
 
     <Button
         android:id="@+id/tournamentsList_login_button"
@@ -29,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.229"></Button>
+        app:layout_constraintTop_toBottomOf="@+id/tournaments_recycler_view"
+        app:layout_constraintVertical_bias="0.874"></Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
