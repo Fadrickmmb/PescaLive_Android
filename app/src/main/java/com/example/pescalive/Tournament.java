@@ -16,6 +16,9 @@ public class Tournament {
         this.rounds = rounds;
     }
 
+    public Tournament() {
+    }
+
     public String getTournamentId() {
         return tournamentId;
     }

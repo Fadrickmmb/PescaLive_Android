@@ -5,6 +5,9 @@ public class Round {
     private String name;
     private String date;
 
+    public Round() {
+    }
+
     public Round(String name) {
         this.name = name;
     }
