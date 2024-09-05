@@ -35,7 +35,6 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.To
         Tournament tournament = tournamentList.get(position);
         holder.tournamentName.setText(tournament.getName());
 
-        // Pass the tournament ID to the User_TournamentScreen
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, User_TournamentScreen.class);
             intent.putExtra("tournamentId", tournament.getTournamentId()); // Pass the tournament ID

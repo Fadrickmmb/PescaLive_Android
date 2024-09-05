@@ -3,6 +3,7 @@ package com.example.pescalive;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,13 +35,10 @@ public class User_TournamentScreen extends AppCompatActivity {
 
         tournamentName = findViewById(R.id.user_tournamentScreen_tournamentName);
 
-        // Get the tournament ID from the Intent
         String tournamentId = getIntent().getStringExtra("tournamentId");
 
-        // Initialize Firebase reference
         databaseReference = FirebaseDatabase.getInstance().getReference("tournaments").child(tournamentId);
 
-        // Fetch and display tournament details
         fetchTournamentDetails();
     }
 
@@ -50,13 +48,13 @@ public class User_TournamentScreen extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Tournament tournament = dataSnapshot.getValue(Tournament.class);
                 if (tournament != null) {
-                    tournamentName.setText(tournament.getName()); // Set tournament name in TextView
+                    tournamentName.setText(tournament.getName());
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle errors
+                Toast.makeText(User_TournamentScreen.this, "Error Fetching Data", Toast.LENGTH_SHORT).show();
             }
         });
     }
