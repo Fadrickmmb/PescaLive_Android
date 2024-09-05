@@ -1,3 +1,4 @@
+// TournamentAdapter.java
 package com.example.pescalive;
 
 import android.content.Context;
@@ -33,11 +34,11 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.To
     public void onBindViewHolder(@NonNull TournamentViewHolder holder, int position) {
         Tournament tournament = tournamentList.get(position);
         holder.tournamentName.setText(tournament.getName());
-        holder.clubName.setText(tournament.getClubName());
 
-        holder.itemView.setOnClickListener(v -> {
+        // Pass the tournament ID to the User_TournamentScreen
+        holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, User_TournamentScreen.class);
-            intent.putExtra("tournamentId", tournament.getTournamentId());
+            intent.putExtra("tournamentId", tournament.getTournamentId()); // Pass the tournament ID
             context.startActivity(intent);
         });
     }
@@ -48,13 +49,11 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.To
     }
 
     public static class TournamentViewHolder extends RecyclerView.ViewHolder {
-
-        TextView tournamentName, clubName;
+        TextView tournamentName;
 
         public TournamentViewHolder(@NonNull View itemView) {
             super(itemView);
             tournamentName = itemView.findViewById(R.id.tournament_name);
-            clubName = itemView.findViewById(R.id.club_name);
         }
     }
 }
