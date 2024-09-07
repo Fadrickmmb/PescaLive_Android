@@ -8,6 +8,11 @@ public class Round {
     public Round() {
     }
 
+    public Round(String roundId, String name){
+        this.name = name;
+        this.roundId = roundId;
+    }
+
     public Round(String name) {
         this.name = name;
     }
