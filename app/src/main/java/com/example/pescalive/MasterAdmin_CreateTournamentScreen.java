@@ -84,7 +84,7 @@ public class MasterAdmin_CreateTournamentScreen extends AppCompatActivity {
         for (int i = 1; i <= numberOfRounds; i++) {
             String roundName = "Etapa " + i;
             String roundId = String.valueOf(i);
-            Round round = new Round(roundName, roundId);
+            Round round = new Round(roundId, roundName);
             rounds.add(round);
         }
 
