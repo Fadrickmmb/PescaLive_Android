@@ -10,10 +10,11 @@ public class Tournament {
     private List<Team> teams;
 
 
-    public Tournament(String name, String clubName, List<Round> rounds) {
+    public Tournament(String name, String clubName, List<Round> rounds, String tournamentId) {
         this.name = name;
         this.clubName = clubName;
         this.rounds = rounds;
+        this.tournamentId = tournamentId;
     }
 
     public Tournament() {

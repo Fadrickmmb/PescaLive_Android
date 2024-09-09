@@ -2,6 +2,7 @@ package com.example.pescalive;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,9 +40,10 @@ public class User_TournamentScreen extends AppCompatActivity {
         });
 
         tournamentName = findViewById(R.id.user_tournamentScreen_tournamentName);
-        roundsLayout = findViewById(R.id.roundsLayout);  // Layout to hold rounds
+        roundsLayout = findViewById(R.id.roundsLayout);
 
         String tournamentId = getIntent().getStringExtra("tournamentId");
+        Log.d("Debug", "Tournament ID:" + tournamentId);
         databaseReference = FirebaseDatabase.getInstance().getReference("tournaments").child(tournamentId);
 
         fetchTournamentDetails();
@@ -54,7 +56,7 @@ public class User_TournamentScreen extends AppCompatActivity {
                 Tournament tournament = dataSnapshot.getValue(Tournament.class);
                 if (tournament != null) {
                     tournamentName.setText(tournament.getName());
-                    loadRounds(tournament.getRounds());
+                    loadRounds(tournament.getRounds(), tournament.getTournamentId());
                 }
             }
 
@@ -65,13 +67,14 @@ public class User_TournamentScreen extends AppCompatActivity {
         });
     }
 
-    private void loadRounds(List<Round> rounds) {
+    private void loadRounds(List<Round> rounds, String tournamentId) {
         if (rounds != null && !rounds.isEmpty()) {
             for (Round round : rounds) {
                 TextView roundView = new TextView(this);
                 roundView.setText(round.getName());
                 roundView.setPadding(16, 16, 16, 16);
                 roundView.setTextSize(18);
+
                 roundView.setOnClickListener(v -> openRoundScreen(round.getRoundId()));
 
                 roundsLayout.addView(roundView);
@@ -79,9 +82,11 @@ public class User_TournamentScreen extends AppCompatActivity {
         }
     }
 
+
     private void openRoundScreen(String roundId) {
         Intent intent = new Intent(User_TournamentScreen.this, User_RoundScreen.class);
         intent.putExtra("roundId", roundId);
+        Log.d("Debug01", roundId);
         startActivity(intent);
     }
 }

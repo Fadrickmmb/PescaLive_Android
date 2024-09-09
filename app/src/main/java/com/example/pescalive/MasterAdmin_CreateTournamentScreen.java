@@ -68,9 +68,10 @@ public class MasterAdmin_CreateTournamentScreen extends AppCompatActivity {
                 String tournamentName = masterAdmin_createTournament_tournamentName.getText().toString().trim();
                 String clubName = masterAdmin_createTournament_clubName.getText().toString().trim();
                 Integer numberOfRounds = masterAdmin_createTournament_roundsPicker.getValue();
+                String tournamentId = clubName + tournamentName;
 
                 if (!tournamentName.isEmpty() && !clubName.isEmpty()){
-                    addTournamentToDatabase(tournamentName, clubName, numberOfRounds);
+                    addTournamentToDatabase(tournamentName, clubName, numberOfRounds, tournamentId);
                 }else{
                     Toast.makeText(MasterAdmin_CreateTournamentScreen.this, "Please fill all Inputs", Toast.LENGTH_SHORT).show();
                 }
@@ -78,7 +79,7 @@ public class MasterAdmin_CreateTournamentScreen extends AppCompatActivity {
         });
     }
 
-    private void addTournamentToDatabase(String tournamentName, String clubName, int numberOfRounds){
+    private void addTournamentToDatabase(String tournamentName, String clubName, int numberOfRounds, String tournamentId){
 
         List<Round> rounds = new ArrayList<>();
         for (int i = 1; i <= numberOfRounds; i++) {
@@ -88,7 +89,7 @@ public class MasterAdmin_CreateTournamentScreen extends AppCompatActivity {
             rounds.add(round);
         }
 
-        Tournament tournament = new Tournament(tournamentName, clubName, rounds);
+        Tournament tournament = new Tournament(tournamentName, clubName, rounds, tournamentId);
 
         databaseReference.child(tournamentName).setValue(tournament).addOnSuccessListener(
                 aVoid -> {
