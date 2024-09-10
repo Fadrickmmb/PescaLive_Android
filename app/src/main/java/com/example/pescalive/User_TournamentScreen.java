@@ -75,7 +75,7 @@ public class User_TournamentScreen extends AppCompatActivity {
                 roundView.setPadding(16, 16, 16, 16);
                 roundView.setTextSize(18);
 
-                roundView.setOnClickListener(v -> openRoundScreen(round.getRoundId()));
+                roundView.setOnClickListener(v -> openRoundScreen(round.getRoundId(), tournamentId));
 
                 roundsLayout.addView(roundView);
             }
@@ -83,10 +83,12 @@ public class User_TournamentScreen extends AppCompatActivity {
     }
 
 
-    private void openRoundScreen(String roundId) {
+    private void openRoundScreen(String roundId, String tournamentId) {
         Intent intent = new Intent(User_TournamentScreen.this, User_RoundScreen.class);
         intent.putExtra("roundId", roundId);
-        Log.d("Debug01", roundId);
+        intent.putExtra("tournamentId", tournamentId);
+        Log.d("Debug01", "Tournament Screen Debug01: " + roundId);
+        Log.d("Debug", "Tournament Screen Debug02: " + tournamentId);
         startActivity(intent);
     }
 }

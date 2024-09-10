@@ -36,18 +36,64 @@ public class User_RoundScreen extends AppCompatActivity {
             return insets;
         });
 
-
         roundName = findViewById(R.id.user_roundScreen_roundName);
 
         String roundId = getIntent().getStringExtra("roundId");
+        String tournamentId = getIntent().getStringExtra("tournamentId");
+
+        Log.d("Debug", "User Round Screen Debug01 " + roundId);
+        Log.d("Debug", "User Round Screen Debug02 " + tournamentId);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("tournaments");
 
 
-        Log.d("Debug01", roundId);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Log.d("Debug", "User_RoundScreen - Snapshot Exists");
+                    boolean tournamentFound = false;
+
+                    for (DataSnapshot tournamentSnapshot : snapshot.getChildren()) {
+                        Tournament tournament = tournamentSnapshot.getValue(Tournament.class);
 
 
+                        if (tournament != null && tournament.getTournamentId() != null && tournament.getTournamentId().equals(tournamentId)) {
+                            Log.d("Debug", "Tournament with ID: " + tournamentId + " found");
+
+                            tournamentFound = true;
+                            List<Round> rounds = tournament.getRounds();
 
 
+                            if (rounds != null) {
+                                for (Round round : rounds) {
 
+                                    if (round != null && round.getRoundId() != null && round.getRoundId().equals(roundId)) {
+                                        Log.d("Debug", "Round with ID: " + roundId + " found");
+                                        roundName.setText(round.getName());
+                                        return;
+                                    }
+                                }
+                            }
+
+
+                            Toast.makeText(User_RoundScreen.this, "Round not found", Toast.LENGTH_SHORT).show();
+                            break;
+                        }
+                    }
+
+                    if (!tournamentFound) {
+                        Toast.makeText(User_RoundScreen.this, "Tournament not found", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(User_RoundScreen.this, "No tournaments found", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Debug", "Database Error: " + error.getMessage());
+            }
+        });
     }
-
 }
